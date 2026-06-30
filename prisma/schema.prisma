@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model customers {
+  id        String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name      String @db.VarChar(255)
+  email     String @db.VarChar(255)
+  image_url String @db.VarChar(255)
+}
+
+model invoices {
+  id          String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  customer_id String   @db.Uuid
+  amount      Int
+  status      String   @db.VarChar(255)
+  date        DateTime @db.Date
+}
+
+model revenue {
+  month   String @unique @db.VarChar(4)
+  revenue Int
+}
+
+model user_quotes_table {
+  id      Int     @id @default(autoincrement())
+  author  String?
+  content String? @unique
+
+  @@unique([author, content])
+}
+
+model users {
+  id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name     String @db.VarChar(255)
+  email    String @unique
+  password String
+}
+
+enum RenoNoticePriority {
+  NORMAL
+  URGENT
+}
+
+enum RenoNoticeCategory {
+  EXAM
+  EVENT
+  GENERAL
+}
+
+model Notice {
+  id          Int                  @id @default(autoincrement())
+  title       String               @db.VarChar(255)
+  body        String
+  category    RenoNoticeCategory
+  priority    RenoNoticePriority
+  publishDate DateTime
+  image       String?              @db.VarChar(500)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  @@map("reno_notices")
+}
