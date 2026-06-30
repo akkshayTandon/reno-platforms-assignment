@@ -2,6 +2,9 @@
 
 A full-stack Notice Board application built as part of the **Reno Platforms Web Development Internship Assignment**.
 
+### Deployed Project Link
+View the project at https://notice-board-reno-platforms-assignm.vercel.app/ 
+
 ## Tech Stack
 
 - Next.js (Pages Router)

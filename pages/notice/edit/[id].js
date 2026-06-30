@@ -49,6 +49,7 @@ export default function EditNotice() {
     }, [id]);
 
     async function handleUpdate(formData) {
+        // console.log(formData);
         try {
             const response = await fetch(`/api/notices/${id}`, {
                 method: "PUT",

@@ -19,6 +19,7 @@ export default function NoticeForm({ initialData = defaultFormData, onSubmit }) 
     const [formData, setFormData] = useState({
         ...defaultFormData,
         ...initialData,
+        image: initialData.image ?? "",
         publishDate: initialData.publishDate
             ? initialData.publishDate.split("T")[0]
             : "",
