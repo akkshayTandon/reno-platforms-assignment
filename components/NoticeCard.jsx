@@ -50,6 +50,7 @@ export default function NoticeCard({ notice, onDelete }) {
                     width={600}
                     height={350}
                     alt={notice.title}
+                    loading="lazy"
                     className="notice-image"
                 />
             )}
